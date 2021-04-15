@@ -1,53 +1,43 @@
 import React from "react";
-import axios from "axios";
-import Movie from "../components/Movie";
+import Ninjas from "../components/ninjas";
 import "./Home.css";
 
 class Home extends React.Component {
   state = {
-    isLoading: true,
-    movies: [],
-  };
-
-  getMovies = async () => {
-    const {
-      data: {
-        data: { movies },
+    isNinja: false,
+    ninjasData: [
+      {
+        name: "A ninja",
+        id: 1,
       },
-    } = await axios.get(
-      "https://yts-proxy.nomadcoders1.now.sh/list_movies.json?sort_by=rating"
-    );
-    this.setState({ movies, isLoading: false });
+      {
+        name: "B ninja",
+        id: 2,
+      },
+      {
+        name: "C ninja",
+        id: 3,
+      },
+    ],
   };
-
-  componentDidMount() {
-    this.getMovies();
-  }
 
   render() {
-    const { isLoading, movies } = this.state;
+    const { ninjasData, isNinja } = this.state;
     return (
-      <section className="container">
-        {isLoading ? (
-          <div className="loader">
-            <span className="loader__text">Loading...</span>
-          </div>
-        ) : (
-          <div className="movies">
-            {movies.map((movie) => (
-              <Movie
-                key={movie.id}
-                id={movie.id}
-                year={movie.year}
-                title={movie.title}
-                summary={movie.summary}
-                poster={movie.medium_cover_image}
-                genres={movie.genres}
-              />
+      <div>
+        {isNinja ? (
+          <div>
+            <h1>너는 닌자</h1>
+            {ninjasData.map((ninja) => (
+              <Ninjas name={ninja.name} id={ninja.id} key={ninja.id} />
             ))}
           </div>
+        ) : (
+          <div>
+            <h1>넌 닌자가 아니다</h1>
+          </div>
         )}
-      </section>
+      </div>
     );
   }
 }
