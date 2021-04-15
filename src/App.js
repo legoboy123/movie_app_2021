@@ -1,16 +1,14 @@
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
-import Home from "./routes/Home";
+import RealStart from "./routes/RealStart";
 import Start from "./routes/Start";
-import Navigation from "./components/Navigation";
 import "./App.css";
 
 function App() {
   return (
     <HashRouter>
-      {/* <Navigation /> */}
-      <Route path="/" exact={true} component={Start} />
-      <Route path="/home" exact={true} component={Home} />
+      <Route path="/" exact={true} component={RealStart} />
+      <Route path="/start" exact={true} component={Start} />
     </HashRouter>
   );
 }

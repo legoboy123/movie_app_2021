@@ -1,10 +1,10 @@
 import React from "react";
 
-function Ninja({ name, id }) {
+function Ninja({ name, image }) {
   return (
     <div>
       <h1>{name}</h1>
-      <h2>{id}</h2>
+      <img src={image}></img>
     </div>
   );
 }
